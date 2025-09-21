@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InMind</title>
 <style>
-  /* Reset default margins */
   body, html {
     margin: 0;
     padding: 0;
@@ -18,7 +17,7 @@
     font-family: "Hiragino Mincho ProN", serif;
   }
 
-  /* Glowing logo with wave outline */
+  /* Logo with pulsing yellow glow */
   #logo-button {
     color: white;
     font-size: 72px;
@@ -26,30 +25,27 @@
     text-decoration: none;
     display: inline-block;
     position: relative;
-    /* Outline glow effect using text-shadow */
-    text-shadow:
-      0 0 5px #fff,
-      0 0 10px #fff,
-      0 0 15px #0ff,
-      0 0 20px #0ff;
-    /* For wave gradient animation */
-    background: linear-gradient(90deg, #0ff, #fff, #0ff);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: wave 2s linear infinite;
+    transition: transform 0.3s;
+    animation: glowWave 2s infinite;
   }
 
-  @keyframes wave {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
+  @keyframes glowWave {
+    0% {
+      text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+    }
+    50% {
+      text-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 60px #FFD700, 0 0 80px #FFD700;
+    }
+    100% {
+      text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
+    }
   }
 
   #logo-button:hover {
     transform: scale(1.05);
   }
 
-  /* Try the tool button */
+  /* Try the tool button with fixed yellow neon glow */
   #try-tool {
     color: white;
     font-size: 24px;
@@ -57,6 +53,7 @@
     text-decoration: none;
     opacity: 0; /* start invisible */
     transition: opacity 1.5s ease-in;
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700;
   }
 
   #try-tool:hover {
@@ -70,7 +67,7 @@
   <!-- Logo button linking to About page -->
   <a id="logo-button" href="about.html">InMind.</a>
 
-  <!-- Try the tool button (will fade in) -->
+  <!-- Try the tool button -->
   <a id="try-tool" href="https://placeholder-link.com">Try the tool</a>
 
   <script>
@@ -78,7 +75,7 @@
     window.addEventListener('load', function() {
       setTimeout(function(){
         document.getElementById('try-tool').style.opacity = 1;
-      }, 2000); // 2-second delay
+      }, 2000);
     });
   </script>
 
