@@ -81,14 +81,12 @@
     text-decoration: underline;
   }
 
-  /* Resources button in upper left */
+  /* Resources button below Try the tool */
   #resources-btn {
     color: white;
     font-size: 20px;
     text-decoration: none;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    margin-top: 15px;
     opacity: 0; /* start invisible */
     transition: opacity 1.5s ease-in;
     text-shadow:
@@ -107,26 +105,26 @@
 </head>
 <body>
 
-  <!-- Resources button -->
-  <a id="resources-btn" href="resources.html">Resources</a>
-
   <!-- Logo button linking to About page -->
   <a id="logo-button" href="about.html">InMind.</a>
 
   <!-- Try the tool button -->
   <a id="try-tool" href="https://placeholder-link.com">Try the tool</a>
 
+  <!-- Resources button below Try the tool -->
+  <a id="resources-btn" href="resources.html">Resources</a>
+
   <script>
     window.addEventListener('load', function() {
-      // Fade in Resources button after 1 second
-      setTimeout(function(){
-        document.getElementById('resources-btn').style.opacity = 1;
-      }, 1000);
-
       // Fade in Try the tool button after 2 seconds
       setTimeout(function(){
         document.getElementById('try-tool').style.opacity = 1;
       }, 2000);
+
+      // Fade in Resources button slightly after (2.5s)
+      setTimeout(function(){
+        document.getElementById('resources-btn').style.opacity = 1;
+      }, 2500);
     });
   </script>
 
