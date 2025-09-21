@@ -34,7 +34,7 @@
     color: white;
     text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
     opacity: 0;
-    transition: opacity 2s ease-in;
+    transition: opacity 1s ease-in; /* faster fade-in */
     margin-top: 200px;
     position: relative;
   }
@@ -50,7 +50,7 @@
     opacity: 0;
     color: white;
     transform: translateY(40px);
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    transition: opacity 1s ease-out, transform 1s ease-out; /* slightly faster */
     margin-bottom: 30px;
   }
 
@@ -98,33 +98,39 @@
   // Fade in brain and title
   window.addEventListener('load', () => {
     setTimeout(() => { brain.style.opacity = 1; }, 500);
-    setTimeout(() => { title.style.opacity = 1; }, 1200);
-
-    // Check which paragraphs are in viewport initially
-    checkParagraphs();
+    setTimeout(() => { 
+      title.style.opacity = 1; 
+      // start content fade-in shortly after title
+      staggerContent();
+    }, 800); // faster than before
   });
 
-  function checkParagraphs() {
+  function staggerContent() {
     contentParagraphs.forEach((p, index) => {
-      const rect = p.getBoundingClientRect();
-      const screenHeight = window.innerHeight;
-      if (rect.top < screenHeight * 0.95 && !p.classList.contains('visible')) {
+      setTimeout(() => {
         p.style.opacity = 1;
         p.style.transform = 'translateY(0)';
-        p.style.transitionDelay = `${index * 0.15}s`;
         p.classList.add('visible');
-      }
+      }, 250 + index * 300); // stagger with overlap
     });
   }
 
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-
-    // Parallax title movement
     title.style.transform = `translateY(-${scrollY * 0.3}px)`;
 
-    // Check paragraphs on scroll
-    checkParagraphs();
+    // Fade in paragraphs on scroll if they haven't yet
+    contentParagraphs.forEach((p, index) => {
+      if (!p.classList.contains('visible')) {
+        const rect = p.getBoundingClientRect();
+        const screenHeight = window.innerHeight;
+        if (rect.top < screenHeight * 0.95) {
+          p.style.opacity = 1;
+          p.style.transform = 'translateY(0)';
+          p.classList.add('visible');
+        }
+      }
+    });
 
     // Show back button when last paragraph is visible and near bottom
     const lastPara = contentParagraphs[contentParagraphs.length - 1];
