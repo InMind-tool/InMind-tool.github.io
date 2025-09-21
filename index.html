@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>InMind</title>
+  <style>
+    /* Reset default margins */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: black;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: "Hiragino Mincho ProN", serif;
+    }
+
+    /* Logo button */
+    #logo-button {
+      color: white;
+      font-size: 72px; /* adjust size as needed */
+      cursor: pointer;
+      position: relative;
+      padding: 20px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.3s;
+    }
+
+    /* Glowing outline */
+    #logo-button::after {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #0ff;
+      opacity: 0.7;
+      animation: glow 2s infinite alternate;
+      pointer-events: none; /* allows clicking through */
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #0ff; }
+      100% { box-shadow: 0 0 20px #fff, 0 0 40px #fff, 0 0 60px #fff, 0 0 80px #0ff; }
+    }
+
+    #logo-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* Try the tool button */
+    #try-tool {
+      color: white;
+      font-size: 24px; /* smaller than logo */
+      margin-top: 20px;
+      text-decoration: none;
+      opacity: 0; /* start invisible */
+      transition: opacity 1.5s ease-in;
+    }
+
+    #try-tool:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Logo button linking to About page -->
+  <a id="logo-button" href="about.html">InMind.</a>
+
+  <!-- Try the tool button (will fade in) -->
+  <a id="try-tool" href="https://placeholder-link.com">Try the tool</a>
+
+  <script>
+    // Fade in the Try the tool button after 2 seconds
+    window.addEventListener('load', function() {
+      setTimeout(function(){
+        document.getElementById('try-tool').style.opacity = 1;
+      }, 2000); // 2-second delay
+    });
+  </script>
+
+</body>
+</html>
