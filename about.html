@@ -41,7 +41,7 @@
     position: relative;
   }
 
-  /* Content paragraphs always visible for now */
+  /* Content paragraphs */
   #about-content {
     max-width: 800px;
     margin: 100px auto 50px auto;
@@ -50,9 +50,10 @@
   }
 
   #about-content p {
-    opacity: 1;           /* Visible immediately */
-    color: white;         /* Ensure white text */
-    transform: translateY(0);
+    opacity: 0;
+    color: white;
+    transform: translateY(40px);
+    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
     margin-bottom: 30px;
   }
 
@@ -69,7 +70,8 @@
     border-radius: 5px;
     text-decoration: none;
     opacity: 0;
-    transition: opacity 1s ease-in;
+    transform: translateY(20px);
+    transition: opacity 2s ease-in, transform 2s ease-in;
   }
 </style>
 </head>
@@ -98,6 +100,7 @@
 <script>
   const brain = document.getElementById('brain-bg');
   const title = document.getElementById('about-title');
+  const contentParagraphs = document.querySelectorAll('#about-content p');
   const backBtn = document.getElementById('back-button');
 
   // Fade in brain and title
@@ -106,15 +109,36 @@
     setTimeout(() => { title.style.opacity = 1; }, 1200);
   });
 
-  // Show back button near bottom
+  // Scroll event for parallax and overlapping fade-ins
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
+
+    // Parallax title movement
     title.style.transform = `translateY(-${scrollY * 0.3}px)`;
 
-    if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
+    // Fade in paragraphs with slight overlap
+    contentParagraphs.forEach((p, index) => {
+      const rect = p.getBoundingClientRect();
+      const screenHeight = window.innerHeight;
+      if (rect.top < screenHeight * 0.95 && !p.classList.contains('visible')) {
+        p.style.opacity = 1;
+        p.style.transform = 'translateY(0)';
+        p.style.transitionDelay = `${index * 0.15}s`; // shorter delay = overlap
+        p.classList.add('visible');
+      }
+    });
+
+    // Only show back button if last paragraph is fully visible and user near bottom
+    const lastPara = contentParagraphs[contentParagraphs.length - 1];
+    const lastParaBottom = lastPara.getBoundingClientRect().bottom;
+    if (lastPara.classList.contains('visible') && lastParaBottom <= window.innerHeight + 20) {
+      backBtn.style.transitionDelay = '0.5s';
       backBtn.style.opacity = 1;
+      backBtn.style.transform = 'translateY(0)';
     } else {
+      backBtn.style.transitionDelay = '0s';
       backBtn.style.opacity = 0;
+      backBtn.style.transform = 'translateY(20px)';
     }
   });
 </script>
