@@ -41,7 +41,7 @@
     position: relative;
   }
 
-  /* Content paragraphs */
+  /* Content paragraphs always visible for now */
   #about-content {
     max-width: 800px;
     margin: 100px auto 50px auto;
@@ -50,9 +50,10 @@
   }
 
   #about-content p {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+    opacity: 1;           /* Visible immediately */
+    color: white;         /* Ensure white text */
+    transform: translateY(0);
+    margin-bottom: 30px;
   }
 
   /* Back to Home button */
@@ -97,7 +98,6 @@
 <script>
   const brain = document.getElementById('brain-bg');
   const title = document.getElementById('about-title');
-  const contentParagraphs = document.querySelectorAll('#about-content p');
   const backBtn = document.getElementById('back-button');
 
   // Fade in brain and title
@@ -106,25 +106,11 @@
     setTimeout(() => { title.style.opacity = 1; }, 1200);
   });
 
-  // Scroll event for parallax and staggered fade-in
+  // Show back button near bottom
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
-
-    // Parallax title movement
     title.style.transform = `translateY(-${scrollY * 0.3}px)`;
 
-    // Fade in paragraphs one by one as they enter view
-    contentParagraphs.forEach((p, index) => {
-      const rect = p.getBoundingClientRect();
-      const screenHeight = window.innerHeight;
-      if (rect.top < screenHeight * 0.9) {
-        p.style.opacity = 1;
-        p.style.transform = 'translateY(0)';
-        p.style.transitionDelay = `${index * 0.3}s`;
-      }
-    });
-
-    // Show back button near bottom
     if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
       backBtn.style.opacity = 1;
     } else {
