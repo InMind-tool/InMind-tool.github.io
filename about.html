@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About - InMind</title>
 <style>
-  /* General styles */
   body, html {
     margin: 0;
     padding: 0;
@@ -42,15 +41,18 @@
     position: relative;
   }
 
-  /* Content section */
+  /* Content paragraphs */
   #about-content {
     max-width: 800px;
     margin: 100px auto 50px auto;
     font-size: 20px;
     line-height: 1.8;
+  }
+
+  #about-content p {
     opacity: 0;
-    transition: opacity 1.5s ease-in;
-    font-family: "San Francisco Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    transform: translateY(30px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
   }
 
   /* Back to Home button */
@@ -68,7 +70,6 @@
     opacity: 0;
     transition: opacity 1s ease-in;
   }
-
 </style>
 </head>
 <body>
@@ -96,30 +97,34 @@
 <script>
   const brain = document.getElementById('brain-bg');
   const title = document.getElementById('about-title');
-  const content = document.getElementById('about-content');
+  const contentParagraphs = document.querySelectorAll('#about-content p');
   const backBtn = document.getElementById('back-button');
 
-  // Fade in brain and title smoothly
-  window.addEventListener('load', function() {
+  // Fade in brain and title
+  window.addEventListener('load', () => {
     setTimeout(() => { brain.style.opacity = 1; }, 500);
     setTimeout(() => { title.style.opacity = 1; }, 1200);
   });
 
-  // Scroll event for parallax and fade-in content
-  window.addEventListener('scroll', function() {
+  // Scroll event for parallax and staggered fade-in
+  window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
 
     // Parallax title movement
     title.style.transform = `translateY(-${scrollY * 0.3}px)`;
 
-    // Content fade-in
-    const contentTop = content.getBoundingClientRect().top;
-    const screenHeight = window.innerHeight;
-    if (contentTop < screenHeight * 0.85) {
-      content.style.opacity = 1;
-    }
+    // Fade in paragraphs one by one as they enter view
+    contentParagraphs.forEach((p, index) => {
+      const rect = p.getBoundingClientRect();
+      const screenHeight = window.innerHeight;
+      if (rect.top < screenHeight * 0.9) {
+        p.style.opacity = 1;
+        p.style.transform = 'translateY(0)';
+        p.style.transitionDelay = `${index * 0.3}s`;
+      }
+    });
 
-    // Back button fade-in near bottom
+    // Show back button near bottom
     if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
       backBtn.style.opacity = 1;
     } else {
