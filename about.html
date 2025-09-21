@@ -16,7 +16,6 @@
     text-align: center;
   }
 
-  /* Fixed background brain image */
   #brain-bg {
     position: fixed;
     top: 0;
@@ -29,7 +28,6 @@
     z-index: -1;
   }
 
-  /* Neon glow title */
   #about-title {
     font-family: "Hiragino Mincho ProN", serif;
     font-size: 72px;
@@ -41,7 +39,6 @@
     position: relative;
   }
 
-  /* Content paragraphs */
   #about-content {
     max-width: 800px;
     margin: 100px auto 50px auto;
@@ -57,7 +54,6 @@
     margin-bottom: 30px;
   }
 
-  /* Back to Home button */
   #back-button {
     display: inline-block;
     margin: 50px 0;
@@ -77,13 +73,10 @@
 </head>
 <body>
 
-  <!-- Brain Background Image -->
   <img id="brain-bg" src="BRAIN_IMAGE_PATH.png" alt="Brain Background">
 
-  <!-- Title -->
   <div id="about-title">About InMind.</div>
 
-  <!-- Content -->
   <div id="about-content">
     <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
 
@@ -94,7 +87,6 @@
     <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
   </div>
 
-  <!-- Back to Home Button -->
   <a id="back-button" href="index.html">Back to Home</a>
 
 <script>
@@ -107,28 +99,34 @@
   window.addEventListener('load', () => {
     setTimeout(() => { brain.style.opacity = 1; }, 500);
     setTimeout(() => { title.style.opacity = 1; }, 1200);
+
+    // Check which paragraphs are in viewport initially
+    checkParagraphs();
   });
 
-  // Scroll event for parallax and overlapping fade-ins
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-
-    // Parallax title movement
-    title.style.transform = `translateY(-${scrollY * 0.3}px)`;
-
-    // Fade in paragraphs with slight overlap
+  function checkParagraphs() {
     contentParagraphs.forEach((p, index) => {
       const rect = p.getBoundingClientRect();
       const screenHeight = window.innerHeight;
       if (rect.top < screenHeight * 0.95 && !p.classList.contains('visible')) {
         p.style.opacity = 1;
         p.style.transform = 'translateY(0)';
-        p.style.transitionDelay = `${index * 0.15}s`; // shorter delay = overlap
+        p.style.transitionDelay = `${index * 0.15}s`;
         p.classList.add('visible');
       }
     });
+  }
 
-    // Only show back button if last paragraph is fully visible and user near bottom
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+
+    // Parallax title movement
+    title.style.transform = `translateY(-${scrollY * 0.3}px)`;
+
+    // Check paragraphs on scroll
+    checkParagraphs();
+
+    // Show back button when last paragraph is visible and near bottom
     const lastPara = contentParagraphs[contentParagraphs.length - 1];
     const lastParaBottom = lastPara.getBoundingClientRect().bottom;
     if (lastPara.classList.contains('visible') && lastParaBottom <= window.innerHeight + 20) {
