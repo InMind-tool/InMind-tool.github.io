@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About - InMind</title>
+<style>
+  /* General styles */
+  body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "San Francisco Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: white;
+    background-color: black;
+    overflow-x: hidden;
+    text-align: center;
+  }
+
+  /* Fixed background brain image */
+  #brain-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+    z-index: -1;
+  }
+
+  /* Neon glow title */
+  #about-title {
+    font-family: "Hiragino Mincho ProN", serif;
+    font-size: 72px;
+    color: white;
+    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
+    opacity: 0;
+    transition: opacity 2s ease-in;
+    margin-top: 200px;
+    position: relative;
+  }
+
+  /* Content section */
+  #about-content {
+    max-width: 800px;
+    margin: 100px auto 50px auto;
+    font-size: 20px;
+    line-height: 1.8;
+    opacity: 0;
+    transition: opacity 1.5s ease-in;
+    font-family: "San Francisco Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+
+  /* Back to Home button */
+  #back-button {
+    display: inline-block;
+    margin: 50px 0;
+    padding: 10px 25px;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: 20px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 5px;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- Brain Background Image -->
+  <img id="brain-bg" src="BRAIN_IMAGE_PATH.png" alt="Brain Background">
+
+  <!-- Title -->
+  <div id="about-title">About InMind.</div>
+
+  <!-- Content -->
+  <div id="about-content">
+    <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
+
+    <p>At its core, InMind is driven by two guiding principles: accessibility and empathy. Neurodegenerative conditions such as Alzheimer’s, Parkinson’s, and frontotemporal dementia often go unnoticed until they significantly disrupt quality of life. InMind aims to empower individuals by providing early-stage tools and knowledge before diagnosis becomes overwhelming and while intervention can still be impactful.</p>
+
+    <p>The platform works by allowing users to ask questions about brain health. The AI tool searches trusted sources, summarizes information, and presents it in a concise and accessible way. In addition to the AI tool, InMind offers a curated hub of resources covering prevention strategies, caregiving guidance, and community support. Users can explore frequently asked questions with a single click or submit their own questions through the chat interface. The platform also allows users to save information as favorites for future reference and clear the chat to start a new session.</p>
+
+    <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
+  </div>
+
+  <!-- Back to Home Button -->
+  <a id="back-button" href="index.html">Back to Home</a>
+
+<script>
+  const brain = document.getElementById('brain-bg');
+  const title = document.getElementById('about-title');
+  const content = document.getElementById('about-content');
+  const backBtn = document.getElementById('back-button');
+
+  // Fade in brain and title smoothly
+  window.addEventListener('load', function() {
+    setTimeout(() => { brain.style.opacity = 1; }, 500);
+    setTimeout(() => { title.style.opacity = 1; }, 1200);
+  });
+
+  // Scroll event for parallax and fade-in content
+  window.addEventListener('scroll', function() {
+    const scrollY = window.scrollY;
+
+    // Parallax title movement
+    title.style.transform = `translateY(-${scrollY * 0.3}px)`;
+
+    // Content fade-in
+    const contentTop = content.getBoundingClientRect().top;
+    const screenHeight = window.innerHeight;
+    if (contentTop < screenHeight * 0.85) {
+      content.style.opacity = 1;
+    }
+
+    // Back button fade-in near bottom
+    if ((window.innerHeight + scrollY) >= document.body.offsetHeight - 50) {
+      backBtn.style.opacity = 1;
+    } else {
+      backBtn.style.opacity = 0;
+    }
+  });
+</script>
+
+</body>
+</html>
