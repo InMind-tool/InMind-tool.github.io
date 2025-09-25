@@ -1,76 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InMind</title>
 <style>
   body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: black;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     font-family: "Hiragino Mincho ProN", serif;
-    overflow: hidden;
+    overflow-x: hidden;
   }
 
-  /* Brain background fills entire screen */
-  body::before {
-    content: "";
+  /* Brain background */
+  .brain-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("brain.png") no-repeat center center/cover;
-    opacity: 1; /* full opacity */
-    z-index: -1; /* keep it behind everything */
+    object-fit: cover;
+    z-index: -1;
+    opacity: 1;
   }
 
-  .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    z-index: 1; /* content stays above brain */
-  }
-
-  h1 {
-    font-size: 80px;
+  /* Logo */
+  #logo-button {
     color: white;
-    text-shadow: 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff;
-  }
-
-  .btn {
-    margin-top: 20px;
-    font-size: 24px;
-    color: white;
+    font-size: 72px;
     cursor: pointer;
-    background: none;
-    border: none;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff;
-    transition: transform 0.3s ease, opacity 0.5s ease;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    transition: transform 0.3s;
+    text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
+  }
+  #logo-button:hover { transform: scale(1.05); }
+
+  /* Buttons */
+  .btn {
+    color: white;
+    font-size: 24px;
+    margin-top: 20px;
+    text-decoration: none;
+    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
     opacity: 0;
+    transition: opacity 1.5s ease-in;
+    font-family: "Hiragino Mincho ProN", serif;
   }
-
-  /* Fade in timing */
-  .btn.try {
-    animation: fadeIn 2s ease forwards;
-    animation-delay: 2s;
-  }
-
-  .btn.resources {
-    animation: fadeIn 2s ease forwards;
-    animation-delay: 3s;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+  .btn:hover { text-decoration: underline; }
 </style>
-
+</head>
 <body>
-  <div class="container">
-    <h1>InMind.</h1>
-    <button class="btn try">Try the Tool</button>
-    <button class="btn resources">Resources</button>
-  </div>
+
+  <img src="brain.png" alt="Brain" class="brain-bg">
+
+  <!-- Logo -->
+  <a id="logo-button" href="about.html">InMind.</a>
+
+  <!-- Buttons -->
+  <a id="try-tool" class="btn" href="https://placeholder-link.com">Try the tool</a>
+  <a id="resources" class="btn" href="#">Resources</a>
+
+  <script>
+    window.addEventListener('load', function() {
+      setTimeout(() => document.getElementById('try-tool').style.opacity = 1, 2000);
+      setTimeout(() => document.getElementById('resources').style.opacity = 1, 3000);
+    });
+  </script>
 </body>
+</html>
