@@ -11,11 +11,12 @@
     height: 100%;
     font-family: "Hiragino Mincho ProN", serif;
     color: white;
+    background-color: black; /* black background behind brain */
   }
 
   body {
-    /* Brain PNG as fixed background */
-    background: url('brain.png') center center / cover no-repeat fixed;
+    /* Fixed brain background with black behind it */
+    background: black url('brain.png') center center / cover no-repeat fixed;
   }
 
   .container {
@@ -64,8 +65,10 @@
 <body>
 
   <div class="container">
+    <!-- Title -->
     <h1 id="title">About InMind.</h1>
 
+    <!-- Content -->
     <div id="content">
       <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
 
@@ -76,6 +79,7 @@
       <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
     </div>
 
+    <!-- Back Button -->
     <a id="back-home" href="index.html">Back to Home</a>
   </div>
 
