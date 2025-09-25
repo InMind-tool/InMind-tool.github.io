@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>InMind</title>
+<title>About InMind</title>
 <style>
   html, body {
     margin: 0;
@@ -25,62 +25,92 @@
   }
 
   .container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 50px 20px;
     text-align: center;
+    color: white;
   }
 
-  /* Logo */
-  #logo-button {
-    color: white;
+  /* Title */
+  h1 {
     font-size: 72px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: transform 0.3s, opacity 1.5s;
+    margin-bottom: 40px;
+    color: white;
     text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
     opacity: 0;
+    transition: opacity 1.5s;
   }
-  #logo-button:hover { transform: scale(1.05); }
 
-  /* Buttons */
-  .btn {
-    color: white;
-    font-size: 24px;
-    margin-top: 20px;
-    text-decoration: none;
-    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
+  /* Paragraphs */
+  p {
+    font-family: "San Francisco Pro", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 30px;
     opacity: 0;
-    transition: opacity 1.5s ease-in;
-    font-family: "Hiragino Mincho ProN", serif;
-    display: inline-block;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
   }
-  .btn:hover { text-decoration: underline; }
+
+  /* Back button */
+  #back-home {
+    display: inline-block;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 20px;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    margin-top: 40px;
+  }
 </style>
 </head>
 <body>
 
   <div class="container">
-    <!-- Logo -->
-    <a id="logo-button" href="about.html">InMind.</a>
+    <!-- Title -->
+    <h1 id="title">About InMind.</h1>
 
-    <!-- Buttons -->
-    <a id="try-tool" class="btn" href="https://placeholder-link.com">Try the tool</a>
-    <a id="resources" class="btn" href="#">Resources</a>
+    <div id="content">
+      <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
+
+      <p>At its core, InMind is driven by two guiding principles: accessibility and empathy. Neurodegenerative conditions such as Alzheimer’s, Parkinson’s, and frontotemporal dementia often go unnoticed until they significantly disrupt quality of life. InMind aims to empower individuals by providing early-stage tools and knowledge before diagnosis becomes overwhelming and while intervention can still be impactful.</p>
+
+      <p>The platform works by allowing users to ask questions about brain health. The AI tool searches trusted sources, summarizes information, and presents it in a concise and accessible way. In addition to the AI tool, InMind offers a curated hub of resources covering prevention strategies, caregiving guidance, and community support. Users can explore frequently asked questions with a single click or submit their own questions through the chat interface. The platform also allows users to save information as favorites for future reference and clear the chat to start a new session.</p>
+
+      <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
+    </div>
+
+    <a id="back-home" href="index.html">Back to Home</a>
   </div>
 
   <script>
     window.addEventListener('load', function() {
-      const logo = document.getElementById('logo-button');
+      const title = document.getElementById('title');
 
-      // Fade in logo
-      setTimeout(() => { logo.style.opacity = 1; }, 500);
+      // Fade in title
+      setTimeout(() => {
+        title.style.opacity = 1;
+      }, 500);
 
-      // Buttons fade in sequentially
-      setTimeout(() => document.getElementById('try-tool').style.opacity = 1, 2000);
-      setTimeout(() => document.getElementById('resources').style.opacity = 1, 3000);
+      // Fade in paragraphs sequentially
+      const paragraphs = document.querySelectorAll('#content p');
+      paragraphs.forEach((p, index) => {
+        setTimeout(() => {
+          p.style.opacity = 1;
+          p.style.transform = 'translateY(0)';
+        }, 1000 + index * 400);
+      });
+
+      // Fade in back button after last paragraph
+      const backButton = document.getElementById('back-home');
+      setTimeout(() => {
+        backButton.style.opacity = 1;
+      }, 1000 + paragraphs.length * 400 + 200);
     });
   </script>
 
