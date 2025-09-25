@@ -10,33 +10,25 @@
     padding: 0;
     height: 100%;
     font-family: "Hiragino Mincho ProN", serif;
-    overflow-x: hidden;
+    color: white;
   }
 
-  /* Fixed brain background */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('brain.png') center center / cover no-repeat;
-    z-index: -1; /* behind everything */
+  body {
+    /* Brain PNG as fixed background */
+    background: url('brain.png') center center / cover no-repeat fixed;
   }
 
   .container {
     max-width: 800px;
     margin: 0 auto;
-    padding: 50px 20px;
+    padding: 100px 20px;
     text-align: center;
-    color: white;
   }
 
   /* Title */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
-    color: white;
     text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
     opacity: 0;
     transition: opacity 1.5s;
@@ -72,7 +64,6 @@
 <body>
 
   <div class="container">
-    <!-- Title -->
     <h1 id="title">About InMind.</h1>
 
     <div id="content">
@@ -93,9 +84,7 @@
       const title = document.getElementById('title');
 
       // Fade in title
-      setTimeout(() => {
-        title.style.opacity = 1;
-      }, 500);
+      setTimeout(() => { title.style.opacity = 1; }, 500);
 
       // Fade in paragraphs sequentially
       const paragraphs = document.querySelectorAll('#content p');
@@ -108,9 +97,7 @@
 
       // Fade in back button after last paragraph
       const backButton = document.getElementById('back-home');
-      setTimeout(() => {
-        backButton.style.opacity = 1;
-      }, 1000 + paragraphs.length * 400 + 200);
+      setTimeout(() => { backButton.style.opacity = 1; }, 1000 + paragraphs.length * 400 + 200);
     });
   </script>
 
