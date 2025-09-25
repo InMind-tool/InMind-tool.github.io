@@ -15,13 +15,13 @@
   }
 
   body {
-    /* EXACTLY LIKE HOMEPAGE */
+    /* Brain background exactly like homepage */
     background-color: black;
     background-image: url('brain.png');
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 600px auto; /* same size as homepage */
-    background-attachment: fixed; /* stays fixed on scroll */
+    background-position: center center; /* center horizontally and vertically */
+    background-size: 600px auto; /* same size as homepage desktop */
+    background-attachment: fixed; /* stays fixed while scrolling */
   }
 
   .container {
@@ -29,11 +29,11 @@
     z-index: 1; /* content sits on top of brain */
     max-width: 800px;
     margin: 0 auto;
-    padding: 150px 20px 50px 20px;
+    padding: 150px 20px 50px 20px; /* same as homepage to overlay brain */
     text-align: center;
   }
 
-  /* Title with same neon glow as homepage */
+  /* Title with fixed neon glow, same font as homepage */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
@@ -42,6 +42,7 @@
     transition: opacity 1.5s;
   }
 
+  /* Content styling */
   p {
     font-family: "San Francisco Pro", sans-serif;
     font-size: 18px;
@@ -52,6 +53,7 @@
     transition: opacity 1s ease-out, transform 1s ease-out;
   }
 
+  /* Back button styling */
   #back-home {
     display: inline-block;
     font-family: "Times New Roman", serif;
@@ -66,6 +68,7 @@
     margin-top: 40px;
   }
 
+  /* Mobile adjustments to match homepage */
   @media (max-width: 768px) {
     h1 {
       font-size: 48px;
@@ -74,7 +77,7 @@
       font-size: 16px;
     }
     body {
-      background-size: 400px auto;
+      background-size: 400px auto; /* same as homepage mobile */
       background-position: center center;
     }
   }
