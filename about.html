@@ -11,29 +11,28 @@
     height: 100%;
     font-family: "Hiragino Mincho ProN", serif;
     color: white;
-    background-color: black; /* fallback black behind brain */
+    background-color: black;
   }
 
   body {
-    /* Brain background exactly like homepage */
-    background-color: black;
+    /* Brain background same as homepage */
+    background-color: black; /* black behind brain for readability */
     background-image: url('brain.png');
     background-repeat: no-repeat;
-    background-position: center center; /* center like homepage */
-    background-size: cover; /* scale to fill like homepage */
+    background-position: center top; /* align top-center like homepage */
+    background-size: 600px auto; /* same size as homepage */
     background-attachment: fixed; /* stays fixed while scrolling */
   }
 
   .container {
     position: relative;
-    z-index: 1; /* content sits on top of background */
+    z-index: 1; /* content sits on top of brain */
     max-width: 800px;
     margin: 0 auto;
     padding: 150px 20px 50px 20px;
     text-align: center;
   }
 
-  /* Title with neon glow */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
@@ -42,7 +41,6 @@
     transition: opacity 1.5s;
   }
 
-  /* Paragraphs content */
   p {
     font-family: "San Francisco Pro", sans-serif;
     font-size: 18px;
@@ -53,7 +51,6 @@
     transition: opacity 1s ease-out, transform 1s ease-out;
   }
 
-  /* Back to Home button */
   #back-home {
     display: inline-block;
     font-family: "Times New Roman", serif;
@@ -76,8 +73,8 @@
       font-size: 16px;
     }
     body {
-      background-size: cover; /* scale same as homepage mobile */
-      background-position: center center;
+      background-size: 400px auto; /* match homepage mobile scaling */
+      background-position: center top;
     }
   }
 </style>
