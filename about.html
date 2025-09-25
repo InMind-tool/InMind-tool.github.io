@@ -5,30 +5,27 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About InMind</title>
 <style>
-  /* Body & brain background */
   body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: black;
+    background-color: black;
     font-family: "Hiragino Mincho ProN", serif;
     overflow-x: hidden;
   }
 
-  /* Brain background as fixed full-screen wallpaper */
-  body::before {
-    content: "";
+  /* Brain background */
+  .brain-bg {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("brain.png") no-repeat center center/cover;
-    opacity: 1; /* full opacity */
+    object-fit: cover;
     z-index: -1;
+    opacity: 1;
   }
 
-  /* Container for all content */
   .container {
     max-width: 800px;
     margin: 0 auto;
@@ -37,7 +34,6 @@
     color: white;
   }
 
-  /* Title with neon glow */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
@@ -47,7 +43,6 @@
     animation: fadeIn 1.5s forwards;
   }
 
-  /* Content paragraphs */
   p {
     font-family: "San Francisco Pro", sans-serif;
     font-size: 18px;
@@ -58,7 +53,6 @@
     transition: opacity 1s ease-out, transform 1s ease-out;
   }
 
-  /* Back to home button */
   #back-home {
     display: inline-block;
     font-family: "Times New Roman", serif;
@@ -75,6 +69,8 @@
 </style>
 </head>
 <body>
+
+  <img src="brain.png" alt="Brain" class="brain-bg">
 
   <div class="container">
     <h1 id="title">About InMind.</h1>
@@ -93,7 +89,6 @@
   </div>
 
   <script>
-    // Fade in title and paragraphs
     window.addEventListener('load', function() {
       const title = document.getElementById('title');
       title.style.opacity = 1;
@@ -103,14 +98,13 @@
         setTimeout(() => {
           p.style.opacity = 1;
           p.style.transform = 'translateY(0)';
-        }, 800 + index * 400); // staggered fade-in
+        }, 800 + index * 400);
       });
 
-      // Fade in Back to Home button after last paragraph
       const backButton = document.getElementById('back-home');
       setTimeout(() => {
         backButton.style.opacity = 1;
-      }, 800 + paragraphs.length * 400 + 200); // small delay after last paragraph
+      }, 800 + paragraphs.length * 400 + 200); // after last paragraph
     });
   </script>
 </body>
