@@ -11,27 +11,29 @@
     height: 100%;
     font-family: "Hiragino Mincho ProN", serif;
     color: white;
-    background-color: black;
+    background-color: black; /* fallback black behind brain */
   }
 
   body {
-    /* Match homepage brain background exactly */
+    /* Brain background exactly like homepage */
     background-color: black;
     background-image: url('brain.png');
     background-repeat: no-repeat;
-    background-position: center top;
-    background-size: 600px auto; /* same as homepage */
+    background-position: center center; /* center like homepage */
+    background-size: cover; /* scale to fill like homepage */
     background-attachment: fixed; /* stays fixed while scrolling */
   }
 
   .container {
+    position: relative;
+    z-index: 1; /* content sits on top of background */
     max-width: 800px;
     margin: 0 auto;
     padding: 150px 20px 50px 20px;
     text-align: center;
   }
 
-  /* Title with neon glow like homepage */
+  /* Title with neon glow */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
@@ -74,8 +76,8 @@
       font-size: 16px;
     }
     body {
-      background-size: 400px auto; /* match homepage mobile scaling */
-      background-position: center top;
+      background-size: cover; /* scale same as homepage mobile */
+      background-position: center center;
     }
   }
 </style>
