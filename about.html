@@ -3,149 +3,115 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About - InMind</title>
+<title>About InMind</title>
 <style>
+  /* Body & brain background */
   body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: "San Francisco Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    color: white;
-    background-color: black;
+    background: black;
+    font-family: "Hiragino Mincho ProN", serif;
     overflow-x: hidden;
-    text-align: center;
   }
 
-  #brain-bg {
+  /* Brain background as fixed full-screen wallpaper */
+  body::before {
+    content: "";
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 2s ease-in;
+    background: url("brain.png") no-repeat center center/cover;
+    opacity: 1; /* full opacity */
     z-index: -1;
   }
 
-  #about-title {
-    font-family: "Hiragino Mincho ProN", serif;
-    font-size: 72px;
-    color: white;
-    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
-    opacity: 0;
-    transition: opacity 1s ease-in; /* faster fade-in */
-    margin-top: 200px;
-    position: relative;
-  }
-
-  #about-content {
+  /* Container for all content */
+  .container {
     max-width: 800px;
-    margin: 100px auto 50px auto;
-    font-size: 20px;
-    line-height: 1.8;
-  }
-
-  #about-content p {
-    opacity: 0;
+    margin: 0 auto;
+    padding: 50px 20px;
+    text-align: center;
     color: white;
-    transform: translateY(40px);
-    transition: opacity 1s ease-out, transform 1s ease-out; /* slightly faster */
-    margin-bottom: 30px;
   }
 
-  #back-button {
+  /* Title with neon glow */
+  h1 {
+    font-size: 72px;
+    margin-bottom: 40px;
+    color: white;
+    text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+  }
+
+  /* Content paragraphs */
+  p {
+    font-family: "San Francisco Pro", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  /* Back to home button */
+  #back-home {
     display: inline-block;
-    margin: 50px 0;
-    padding: 10px 25px;
-    font-family: "Times New Roman", Times, serif;
+    font-family: "Times New Roman", serif;
     font-style: italic;
     font-size: 20px;
     color: white;
     border: 2px solid white;
-    border-radius: 5px;
+    padding: 10px 20px;
     text-decoration: none;
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 2s ease-in, transform 2s ease-in;
+    transition: opacity 1s ease-in;
+    margin-top: 40px;
   }
 </style>
 </head>
 <body>
 
-  <img id="brain-bg" src="BRAIN_IMAGE_PATH.png" alt="Brain Background">
+  <div class="container">
+    <h1 id="title">About InMind.</h1>
 
-  <div id="about-title">About InMind.</div>
+    <div id="content">
+      <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
 
-  <div id="about-content">
-    <p>InMind is a student-led initiative committed to advancing early awareness, detection, and support for individuals and families affected by neurodegenerative diseases. Founded by a neuroscience-aspiring student with a deep passion for service, InMind seeks to bridge the gap between cutting-edge technology and compassionate care.</p>
+      <p>At its core, InMind is driven by two guiding principles: accessibility and empathy. Neurodegenerative conditions such as Alzheimer’s, Parkinson’s, and frontotemporal dementia often go unnoticed until they significantly disrupt quality of life. InMind aims to empower individuals by providing early-stage tools and knowledge before diagnosis becomes overwhelming and while intervention can still be impactful.</p>
 
-    <p>At its core, InMind is driven by two guiding principles: accessibility and empathy. Neurodegenerative conditions such as Alzheimer’s, Parkinson’s, and frontotemporal dementia often go unnoticed until they significantly disrupt quality of life. InMind aims to empower individuals by providing early-stage tools and knowledge before diagnosis becomes overwhelming and while intervention can still be impactful.</p>
+      <p>The platform works by allowing users to ask questions about brain health. The AI tool searches trusted sources, summarizes information, and presents it in a concise and accessible way. In addition to the AI tool, InMind offers a curated hub of resources covering prevention strategies, caregiving guidance, and community support. Users can explore frequently asked questions with a single click or submit their own questions through the chat interface. The platform also allows users to save information as favorites for future reference and clear the chat to start a new session.</p>
 
-    <p>The platform works by allowing users to ask questions about brain health. The AI tool searches trusted sources, summarizes information, and presents it in a concise and accessible way. In addition to the AI tool, InMind offers a curated hub of resources covering prevention strategies, caregiving guidance, and community support. Users can explore frequently asked questions with a single click or submit their own questions through the chat interface. The platform also allows users to save information as favorites for future reference and clear the chat to start a new session.</p>
+      <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
+    </div>
 
-    <p>Using InMind is straightforward. Users can start by exploring the pre-selected questions or typing a question in the chat. The AI will generate a clear summary based on reliable sources. Favorites can be saved to quickly access important information later. The resources hub provides guides and materials for prevention, caregiving, and community engagement. These features are designed to give users control over their learning experience and make brain health knowledge accessible to everyone.</p>
+    <a id="back-home" href="index.html">Back to Home</a>
   </div>
 
-  <a id="back-button" href="index.html">Back to Home</a>
+  <script>
+    // Fade in title and paragraphs
+    window.addEventListener('load', function() {
+      const title = document.getElementById('title');
+      title.style.opacity = 1;
 
-<script>
-  const brain = document.getElementById('brain-bg');
-  const title = document.getElementById('about-title');
-  const contentParagraphs = document.querySelectorAll('#about-content p');
-  const backBtn = document.getElementById('back-button');
-
-  // Fade in brain and title
-  window.addEventListener('load', () => {
-    setTimeout(() => { brain.style.opacity = 1; }, 500);
-    setTimeout(() => { 
-      title.style.opacity = 1; 
-      // start content fade-in shortly after title
-      staggerContent();
-    }, 800); // faster than before
-  });
-
-  function staggerContent() {
-    contentParagraphs.forEach((p, index) => {
-      setTimeout(() => {
-        p.style.opacity = 1;
-        p.style.transform = 'translateY(0)';
-        p.classList.add('visible');
-      }, 250 + index * 300); // stagger with overlap
-    });
-  }
-
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    title.style.transform = `translateY(-${scrollY * 0.3}px)`;
-
-    // Fade in paragraphs on scroll if they haven't yet
-    contentParagraphs.forEach((p, index) => {
-      if (!p.classList.contains('visible')) {
-        const rect = p.getBoundingClientRect();
-        const screenHeight = window.innerHeight;
-        if (rect.top < screenHeight * 0.95) {
+      const paragraphs = document.querySelectorAll('#content p');
+      paragraphs.forEach((p, index) => {
+        setTimeout(() => {
           p.style.opacity = 1;
           p.style.transform = 'translateY(0)';
-          p.classList.add('visible');
-        }
-      }
+        }, 800 + index * 400); // staggered fade-in
+      });
+
+      // Fade in Back to Home button after last paragraph
+      const backButton = document.getElementById('back-home');
+      setTimeout(() => {
+        backButton.style.opacity = 1;
+      }, 800 + paragraphs.length * 400 + 200); // small delay after last paragraph
     });
-
-    // Show back button when last paragraph is visible and near bottom
-    const lastPara = contentParagraphs[contentParagraphs.length - 1];
-    const lastParaBottom = lastPara.getBoundingClientRect().bottom;
-    if (lastPara.classList.contains('visible') && lastParaBottom <= window.innerHeight + 20) {
-      backBtn.style.transitionDelay = '0.5s';
-      backBtn.style.opacity = 1;
-      backBtn.style.transform = 'translateY(0)';
-    } else {
-      backBtn.style.transitionDelay = '0s';
-      backBtn.style.opacity = 0;
-      backBtn.style.transform = 'translateY(20px)';
-    }
-  });
-</script>
-
+  </script>
 </body>
 </html>
