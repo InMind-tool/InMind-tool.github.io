@@ -5,30 +5,29 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InMind</title>
 <style>
-  body, html {
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    font-family: "Hiragino Mincho ProN", serif;
+    overflow-x: hidden;
+    color: white;
+    background-color: black; /* black background behind brain */
+  }
+
+  /* Fixed brain background */
+  body {
+    background: 
+      black url('brain.png') center center / cover no-repeat fixed;
+  }
+
+  .container {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: "Hiragino Mincho ProN", serif;
-    overflow-x: hidden;
-    background-color: black; /* fallback if image fails to load */
-  }
-
-  .container {
     text-align: center;
-  }
-
-  /* Brain image */
-  #brain {
-    width: 100%;
-    max-width: 600px;
-    opacity: 0;
-    transition: opacity 1.5s;
-    margin-bottom: 20px;
   }
 
   /* Logo */
@@ -37,11 +36,9 @@
     font-size: 72px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-    position: relative;
-    transition: transform 0.3s, opacity 1.5s;
     text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
     opacity: 0;
+    transition: opacity 1.5s, transform 0.3s;
   }
   #logo-button:hover { transform: scale(1.05); }
 
@@ -64,9 +61,6 @@
 <body>
 
   <div class="container">
-    <!-- Brain image fades in with logo -->
-    <img id="brain" src="brain.png" alt="Brain">
-
     <!-- Logo -->
     <a id="logo-button" href="about.html">InMind.</a>
 
@@ -77,19 +71,16 @@
 
   <script>
     window.addEventListener('load', function() {
-      const brain = document.getElementById('brain');
       const logo = document.getElementById('logo-button');
 
-      // Fade in brain and logo together
-      setTimeout(() => {
-        brain.style.opacity = 1;
-        logo.style.opacity = 1;
-      }, 500);
+      // Fade in logo
+      setTimeout(() => { logo.style.opacity = 1; }, 500);
 
-      // Buttons fade in after logo
+      // Fade in buttons sequentially
       setTimeout(() => document.getElementById('try-tool').style.opacity = 1, 2000);
       setTimeout(() => document.getElementById('resources').style.opacity = 1, 3000);
     });
   </script>
+
 </body>
 </html>
