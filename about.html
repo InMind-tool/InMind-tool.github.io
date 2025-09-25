@@ -9,21 +9,9 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: black;
     font-family: "Hiragino Mincho ProN", serif;
+    background-color: black; /* fallback if image fails to load */
     overflow-x: hidden;
-  }
-
-  /* Brain background */
-  .brain-bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    opacity: 1;
   }
 
   .container {
@@ -34,15 +22,26 @@
     color: white;
   }
 
+  /* Brain image */
+  #brain {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transition: opacity 1.5s;
+  }
+
+  /* Title */
   h1 {
     font-size: 72px;
     margin-bottom: 40px;
     color: white;
     text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
     opacity: 0;
-    animation: fadeIn 1.5s forwards;
+    transition: opacity 1.5s;
   }
 
+  /* Paragraphs */
   p {
     font-family: "San Francisco Pro", sans-serif;
     font-size: 18px;
@@ -53,6 +52,7 @@
     transition: opacity 1s ease-out, transform 1s ease-out;
   }
 
+  /* Back button */
   #back-home {
     display: inline-block;
     font-family: "Times New Roman", serif;
@@ -70,9 +70,11 @@
 </head>
 <body>
 
-  <img src="brain.png" alt="Brain" class="brain-bg">
-
   <div class="container">
+    <!-- Brain fades in with title -->
+    <img id="brain" src="brain.png" alt="Brain">
+
+    <!-- Title -->
     <h1 id="title">About InMind.</h1>
 
     <div id="content">
@@ -90,22 +92,31 @@
 
   <script>
     window.addEventListener('load', function() {
+      const brain = document.getElementById('brain');
       const title = document.getElementById('title');
-      title.style.opacity = 1;
 
+      // Fade in brain and title together
+      setTimeout(() => {
+        brain.style.opacity = 1;
+        title.style.opacity = 1;
+      }, 500);
+
+      // Fade in paragraphs sequentially
       const paragraphs = document.querySelectorAll('#content p');
       paragraphs.forEach((p, index) => {
         setTimeout(() => {
           p.style.opacity = 1;
           p.style.transform = 'translateY(0)';
-        }, 800 + index * 400);
+        }, 1000 + index * 400);
       });
 
+      // Fade in back button after last paragraph
       const backButton = document.getElementById('back-home');
       setTimeout(() => {
         backButton.style.opacity = 1;
-      }, 800 + paragraphs.length * 400 + 200); // after last paragraph
+      }, 1000 + paragraphs.length * 400 + 200);
     });
   </script>
+
 </body>
 </html>
