@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources</title>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Hiragino Mincho ProN", serif;
+    color: white;
+    background-color: black;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 150px 20px 50px 20px;
+    text-align: center;
+  }
+
+  /* Title */
+  h1 {
+    font-size: 72px;
+    margin-bottom: 40px;
+    text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
+    opacity: 0;
+    transition: opacity 1.5s;
+  }
+
+  /* Section headers */
+  h2 {
+    font-size: 28px;
+    margin: 40px 0 20px 0;
+    text-shadow: 0 0 6px #f8f8f8, 0 0 12px #f8f8f8;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+
+  /* Paragraphs and links */
+  p, ul {
+    font-family: "San Francisco Pro", sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  ul li {
+    margin-bottom: 10px;
+  }
+  ul li a {
+    color: #f8f8f8;
+    text-decoration: underline;
+  }
+
+  /* Download button */
+  .download-btn {
+    display: inline-block;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 20px;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+
+  /* Back button */
+  #back-home {
+    display: inline-block;
+    font-family: "Times New Roman", serif;
+    font-style: italic;
+    font-size: 20px;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    text-decoration: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+    margin-top: 60px;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 48px;
+    }
+    h2 {
+      font-size: 22px;
+    }
+    p, ul {
+      font-size: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 id="title">Resources</h1>
+
+    <div id="content">
+      <h2>Prevention at Home</h2>
+      <p>There are simple, free habits you can practice daily to support brain health:</p>
+      <ul>
+        <li>Journaling to strengthen memory and process emotions.</li>
+        <li>Reading or learning new skills to keep the mind active.</li>
+        <li>Regular exercise and balanced nutrition to promote overall health.</li>
+        <li>Mindfulness or meditation to reduce stress and improve focus.</li>
+      </ul>
+
+      <h2>Free Online Tools and Games</h2>
+      <p>Engage with free online activities that challenge memory, logic, and problem-solving:</p>
+      <ul>
+        <li><a href="https://www.nytimes.com/crosswords" target="_blank">NYT Games</a> (crosswords, spelling bee, puzzles)</li>
+        <li><a href="https://www.lumosity.com/" target="_blank">Lumosity</a> (free version available, cognitive games)</li>
+        <li><a href="https://www.brainhq.com/" target="_blank">BrainHQ</a> (limited free activities)</li>
+        <li><a href="https://sudoku.com/" target="_blank">Sudoku.com</a> (logic and pattern recognition)</li>
+      </ul>
+
+      <h2>Caregiver and Doctor Support</h2>
+      <p>Caregiving can be challenging, which is why we’ve prepared a practical guide with tips and key questions to ask a doctor. Click below to download:</p>
+      <a href="Family%20and%20Caregiver%20Support%20Guide.pdf" class="download-btn" target="_blank">Download Caregiver Guide</a>
+    </div>
+
+    <!-- Back to home button -->
+    <a id="back-home" href="index.html">Back to Home</a>
+  </div>
+
+  <script>
+    window.addEventListener('load', function() {
+      const title = document.getElementById('title');
+      setTimeout(() => { title.style.opacity = 1; }, 500);
+
+      const headers = document.querySelectorAll('h2');
+      headers.forEach((h, index) => {
+        setTimeout(() => { h.style.opacity = 1; }, 1000 + index * 600);
+      });
+
+      const paragraphs = document.querySelectorAll('#content p, #content ul');
+      paragraphs.forEach((p, index) => {
+        setTimeout(() => {
+          p.style.opacity = 1;
+          p.style.transform = 'translateY(0)';
+        }, 1200 + index * 400);
+      });
+
+      const downloadBtn = document.querySelector('.download-btn');
+      setTimeout(() => { downloadBtn.style.opacity = 1; }, 3000);
+
+      const backButton = document.getElementById('back-home');
+      setTimeout(() => { backButton.style.opacity = 1; }, 4000);
+    });
+  </script>
+
+</body>
+</html>
