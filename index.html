@@ -5,98 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>InMind</title>
 <style>
-  body, html {
+  html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: black;
+    font-family: "Hiragino Mincho ProN", serif;
+    overflow-x: hidden;
+    color: white;
+    background-color: black; /* black background behind brain */
+  }
+
+  /* Fixed brain background */
+  body {
+    background: 
+      black url('brain.png') center center / cover no-repeat fixed;
+  }
+
+  .container {
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: "Hiragino Mincho ProN", serif;
+    text-align: center;
   }
 
-  /* Logo with pulsing off-white glow */
+  /* Logo */
   #logo-button {
     color: white;
     font-size: 72px;
     cursor: pointer;
     text-decoration: none;
-    display: inline-block;
-    position: relative;
-    transition: transform 0.3s;
-    animation: glowWave 2s infinite;
+    text-shadow: 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8, 0 0 40px #f8f8f8;
+    opacity: 0;
+    transition: opacity 1.5s, transform 0.3s;
   }
+  #logo-button:hover { transform: scale(1.05); }
 
-  @keyframes glowWave {
-    0% {
-      text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
-    }
-    50% {
-      text-shadow: 0 0 20px #f8f8f8, 0 0 40px #f8f8f8, 0 0 60px #f8f8f8, 0 0 80px #f8f8f8;
-    }
-    100% {
-      text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
-    }
-  }
-
-  #logo-button:hover {
-    transform: scale(1.05);
-  }
-
-  /* Try the tool button with fixed off-white neon glow */
-  #try-tool {
+  /* Buttons */
+  .btn {
     color: white;
     font-size: 24px;
     margin-top: 20px;
     text-decoration: none;
-    opacity: 0; /* start invisible */
-    transition: opacity 1.5s ease-in;
     text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
-  }
-
-  #try-tool:hover {
-    text-decoration: underline;
-  }
-
-  /* Resources button same style as Try the tool */
-  #resources-button {
-    color: white;
-    font-size: 24px;
-    margin-top: 15px;
-    text-decoration: none;
-    opacity: 0; /* start invisible */
+    opacity: 0;
     transition: opacity 1.5s ease-in;
-    text-shadow: 0 0 5px #f8f8f8, 0 0 10px #f8f8f8, 0 0 20px #f8f8f8, 0 0 30px #f8f8f8;
+    font-family: "Hiragino Mincho ProN", serif;
+    display: inline-block;
   }
+  .btn:hover { text-decoration: underline; }
 
-  #resources-button:hover {
-    text-decoration: underline;
-  }
 </style>
 </head>
 <body>
 
-  <!-- Logo button linking to About page -->
-  <a id="logo-button" href="about.html">InMind.</a>
+  <div class="container">
+    <!-- Logo -->
+    <a id="logo-button" href="about.html">InMind.</a>
 
-  <!-- Try the tool button -->
-  <a id="try-tool" href="https://placeholder-link.com">Try the tool</a>
-
-  <!-- Resources button -->
-  <a id="resources-button" href="resources.html">Resources</a>
+    <!-- Buttons -->
+    <a id="try-tool" class="btn" href="https://placeholder-link.com">Try the tool</a>
+    <a id="resources" class="btn" href="#">Resources</a>
+  </div>
 
   <script>
-    // Fade in the buttons
     window.addEventListener('load', function() {
-      setTimeout(function(){
-        document.getElementById('try-tool').style.opacity = 1;
-      }, 2000);
+      const logo = document.getElementById('logo-button');
 
-      setTimeout(function(){
-        document.getElementById('resources-button').style.opacity = 1;
-      }, 3000);
+      // Fade in logo
+      setTimeout(() => { logo.style.opacity = 1; }, 500);
+
+      // Fade in buttons sequentially
+      setTimeout(() => document.getElementById('try-tool').style.opacity = 1, 2000);
+      setTimeout(() => document.getElementById('resources').style.opacity = 1, 3000);
     });
   </script>
 
